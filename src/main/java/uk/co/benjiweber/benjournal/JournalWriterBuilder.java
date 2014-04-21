@@ -14,7 +14,7 @@ public class JournalWriterBuilder<T> {
         this.cls = cls;
     }
 
-    public JournalWriterBuilder<T> from(String key) {
+    public JournalWriterBuilder<T> to(String key) {
         this.key = key;
         return this;
     }

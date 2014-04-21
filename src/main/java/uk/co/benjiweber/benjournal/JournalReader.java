@@ -28,7 +28,7 @@ public class JournalReader<T> {
     }
 
     /**
-     * Plays journal forward from specified sequence. When end is reached it blocks until more is available.
+     * Plays journal forward to specified sequence. When end is reached it blocks until more is available.
      */
     public Iterable<T> playFrom(String sequence) {
         Iterator<JournalLine> journalLines = rawFrom(sequence).iterator();

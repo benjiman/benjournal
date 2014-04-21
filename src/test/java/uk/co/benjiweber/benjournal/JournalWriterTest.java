@@ -22,7 +22,7 @@ public class JournalWriterTest {
         journalFile.delete();
 
         JournalWriter journal = writing(Person.class)
-                .from("people")
+                .to("people")
                 .location(new File("src/test/resources/journalreader/"))
                 .serialiseWith(p -> p.name + "|" + p.age)
                 .build();
