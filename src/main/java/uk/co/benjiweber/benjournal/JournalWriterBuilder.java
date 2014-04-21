@@ -4,31 +4,36 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JournalWriterBuilder {
+public class JournalWriterBuilder<T> {
     private File file;
-    private Map<Class, Serializer> serializers = new HashMap<>();
-    private final String key;
+    private String key;
+    private final Class<T> cls;
+    private Serializer<T> serializer;
 
-    public JournalWriterBuilder(String key) {
+    public JournalWriterBuilder(Class<T> cls) {
+        this.cls = cls;
+    }
+
+    public JournalWriterBuilder<T> from(String key) {
         this.key = key;
+        return this;
     }
 
-
-    public static JournalWriterBuilder journal(String key) {
-        return new JournalWriterBuilder(key);
+    public static <T> JournalWriterBuilder<T> writing(Class<T> cls) {
+        return new JournalWriterBuilder(cls);
     }
 
-    public JournalWriterBuilder location(File file) {
+    public JournalWriterBuilder<T> location(File file) {
         this.file = file;
         return this;
     }
 
-    public JournalWriter build() {
-        return new JournalWriter(key, file, serializers);
+    public JournalWriter<T> build() {
+        return new JournalWriter(key, file, cls, serializer);
     }
 
-    public <T> JournalWriterBuilder register(Class<T> cls, Serializer<T> serializer) {
-        this.serializers.put(cls, serializer);
+    public JournalWriterBuilder<T> serialiseWith(Serializer<T> serializer) {
+        this.serializer = serializer;
         return this;
     }
 

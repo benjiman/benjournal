@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
-import static uk.co.benjiweber.benjournal.JournalWriterBuilder.journal;
+import static uk.co.benjiweber.benjournal.JournalWriterBuilder.writing;
 
 public class JournalWriterTest {
 
@@ -21,9 +21,10 @@ public class JournalWriterTest {
         File journalFile = new File("src/test/resources/journalreader/people");
         journalFile.delete();
 
-        JournalWriter journal = journal("people")
+        JournalWriter journal = writing(Person.class)
+                .from("people")
                 .location(new File("src/test/resources/journalreader/"))
-                .register(Person.class, p -> p.name + "|" + p.age)
+                .serialiseWith(p -> p.name + "|" + p.age)
                 .build();
 
         journal.write(persona);
