@@ -25,7 +25,6 @@ public class JournalWriter<T> {
 
     public JournalWriter write(T value) {
         String line = serializer.serialize(value);
-        System.out.println("Writing " + line);
         journalLogger.info(
                 "sequence=" + sequencer.next() +
                         "&type=" + URLEncoder.encode(value.getClass().getCanonicalName()) +
