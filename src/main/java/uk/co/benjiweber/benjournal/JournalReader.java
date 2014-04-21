@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
-import static uk.co.benjiweber.expressions.Exceptions.unchecked;
+import static uk.co.benjiweber.expressions.exceptions.Exceptions.unchecked;
 
 public class JournalReader<T> {
 

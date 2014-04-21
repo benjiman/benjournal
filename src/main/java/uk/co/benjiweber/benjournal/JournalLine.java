@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static uk.co.benjiweber.expressions.exceptions.Exceptions.unchecked;
+
 public class JournalLine {
     private final String raw;
     private static final Pattern linePattern = Pattern.compile("^sequence=(.*?)&type=(.*?)&payload=(.*)");
